@@ -70,12 +70,12 @@ watch([title, desc], () => {
       </button>
       <h1 class="font-bold text-orange-600 mb-[10px] capitalize text-[1.5rem]">Belum di kerjakan</h1>
       <div class="flex flex-wrap gap-[20px] mb-[50px] mx-auto">
-        <template v-if="!todos[0]">
+        <template v-if="!todos[0] && !isActive">
             <p>data masih kosong..</p>
         </template>
 
         <template v-for="todo in todos" :key="todo.id">    
-          <div v-if="todo.isDone === false ">
+          <div v-if="!todo.isDone">
             <Todo v-bind="todo" @delete="deleteTodo" @done="completedTodo"/>
           </div>
         </template>
@@ -91,7 +91,7 @@ watch([title, desc], () => {
       <h1 class="font-bold text-green-600 mb-[10px] capitalize text-[1.5rem]">sudah di kerjakan</h1>
       <div class="flex flex-wrap gap-[20px]">
       <template v-for="todo in todos" :key="todo.id">    
-          <div v-if="todo.isDone === true ">
+          <div v-if="todo.isDone">
             <Todo v-bind="todo" @delete="deleteTodo" @done="completedTodo"/>
           </div>
         </template>
